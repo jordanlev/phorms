@@ -163,10 +163,12 @@ abstract class PhormField
      * Returns an HTML string containing the field's help text.
      * @author Jeff Ober
      * @return string the HTML help text paragraph
+     *
+     * Tris: Modified to return empty string if no help text
      **/
     public function help_text()
     {
-        return sprintf('<p class="phorm_help">%s</p>', htmlentities($this->help_text));
+        return ($this->help_text) ? sprintf('<p class="phorm_help">%s</p>', htmlentities($this->help_text)) : '';
     }
     
     /**
@@ -188,20 +190,36 @@ abstract class PhormField
     {
         $widget = $this->get_widget();
         $attr = $this->attributes;
-        return $widget->html($this->value, $this->attributes);
+        if(!isset($attr['class'])) $attr['class'] = '';
+        $attr['class'] .= $this->has_errors() ? ' phorm_error' : ' phorm_field';
+        return $widget->html($this->value, $attr);
+    }
+    
+    /**
+    * Returns whether the field has errors
+    * @author Tris Forster
+    **/
+    public function has_errors()
+    {
+      return (is_array($this->errors) && count($this->errors) > 0);
     }
     
     /**
      * Returns the field's errors as an unordered list with the class "phorm_error".
      * @author Jeff Ober
      * @return string the field errors as an unordered list
+     *
+     * Tris: Modified to return empty string if no errors
      **/
     public function errors()
     {
         $elts = array();
-        if (is_array($this->errors) && count($this->errors) > 0)
+        if (is_array($this->errors) && count($this->errors) > 0) {
             foreach ($this->errors as $error)
                 $elts[] = sprintf('<li>%s</li>', $error);
+        } else {
+          return '';
+        }
         return sprintf('<ul class="phorm_error">%s</ul>', implode($elts));
     }
     
