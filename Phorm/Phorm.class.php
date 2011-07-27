@@ -175,6 +175,7 @@ abstract class Phorm_Phorm
 
 				$this->$name->set_attribute('id', $id);
 				$this->$name->set_attribute('name', ($this->$name->multi_field) ? sprintf('%s[]', $name) : $name);
+				$this->$name->set_lang($this->lang);
 
 				$found[$name] = & $this->$name;
 			}
