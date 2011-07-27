@@ -19,4 +19,4 @@ $lang['field_invalid_datetime_format'] = 'Datums- oder Zeitformat ist ungültig.
 $lang['field_invalid_multiplechoice_badformat'] = 'Auswahl ist ungültig.';
 $lang['buttons_validate'] = 'Validiere';
 $lang['buttons_reset'] = 'Formular zurücksetzen';
-$lang['validation_required'] = 'Dieses Feld ist ein Pflichtfeld.';
+$lang['validation_required'] = 'Dieses ist ein Pflichtfeld.';
