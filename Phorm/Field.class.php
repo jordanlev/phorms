@@ -63,6 +63,11 @@ abstract class Phorm_Field
 	 * @var boolean
 	 */
 	private $valid;
+	/**
+	 * Lanugage of the field.
+	 * @var Phorm_Language
+	 */
+	private $lang;
 
 	/**
 	 * @param string $label the field's label
@@ -85,6 +90,17 @@ abstract class Phorm_Field
 		$this->attributes = $attributes;
 		$this->validators = $validators;
 		$this->lang = new Phorm_Language($lang);
+	}
+
+	/**
+	 * Sets the language of the field.
+	 *
+	 * @param Phorm_Language $lang
+	 * @return void
+	 */
+	public function set_lang(Phorm_Language $lang)
+	{
+		$this->lang = $lang;
 	}
 
 	/**
