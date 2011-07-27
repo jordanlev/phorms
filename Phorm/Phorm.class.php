@@ -111,6 +111,8 @@ abstract class Phorm_Phorm
 			throw new Exception('Multi-part form method changed to POST.', E_USER_WARNING);
 		}
 
+		$this->lang = new Phorm_Language($lang);
+
 		// Set up fields
 		$this->define_fields();
 		$this->fields = $this->find_fields();
